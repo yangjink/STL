@@ -1,0 +1,7 @@
+﻿  4.c
+d:\作业\作业1\9-21\9-21\4.c(10): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\作业\作业1\9-21\9-21\4.c(15): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\作业\作业1\9-21\9-21\4.c(16): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+d:\作业\作业1\9-21\9-21\4.c(21): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+  9-21.vcxproj -> D:\作业\作业1\9-21\Debug\9-21.exe
+  9-21.vcxproj -> D:\作业\作业1\9-21\Debug\9-21.pdb (Partial PDB)

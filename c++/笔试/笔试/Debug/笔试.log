@@ -1,0 +1,13 @@
+﻿生成启动时间为 2017/4/21 21:38:41。
+     1>项目“D:\作业\c++\笔试\笔试\笔试.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt test.cpp
+         test.cpp
+     1>d:\作业\c++\笔试\笔试\test.cpp(107): error C2065: “b”: 未声明的标识符
+     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets(341,5): error MSB6006: “CL.exe”已退出，代码为 2。
+     1>d:\作业\c++\笔试\笔试\test.cpp(107): fatal error C1903: 无法从以前的错误中恢复；正在停止编译
+     1>已完成生成项目“D:\作业\c++\笔试\笔试\笔试.vcxproj”(Build 个目标)的操作 - 失败。
+
+生成失败。
+
+已用时间 00:00:00.54
