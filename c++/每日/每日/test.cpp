@@ -1,47 +1,71 @@
-//替换空格
-#include <iostream>
-using namespace std;
-#include <string>
-void replaceSpace(char *str, int length) {
-	char* cur = str;
-	int spaceNum = 0;
-	while (*cur != '\0')
-	{
-		if (*cur == ' ')
-			spaceNum++;
-		cur++;
-	}
-	int i = length;
-	int j = i + (spaceNum * 2);
+//定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。
 
-	for (; i >= 0; i--)
-	{
-		if (spaceNum == 0)
-			return;
-		if (str[i] == ' ')
-		{
-			str[j--] = '0';
-			str[j--] = '2';
-			str[j--] = '%';
-			spaceNum--;
-		}
-		else
-		{
-			str[j--] = str[i];
-
-		}
-
-
+class Solution {
+public:
+	void push(int value) {
 
 	}
-}
+	void pop() {
+
+	}
+	int top() {
+
+	}
+	int min() {
+
+	}
+	stack<int> s1;
+};
 int main()
 {
-	char a[12] = " abc de";
-	replaceSpace(a, strlen(a));
-	cout << a;
 	return 0;
 }
+
+
+////替换空格O(1)
+//#include <iostream>
+//using namespace std;
+//#include <string>
+//void replaceSpace(char *str, int length) {
+//	char* cur = str;
+//	int spaceNum = 0;
+//	while (*cur != '\0')
+//	{
+//		if (*cur == ' ')
+//			spaceNum++;
+//		cur++;
+//	}
+//	int i = length;
+//	int j = i + (spaceNum * 2);
+//
+//	for (; i >= 0; i--)
+//	{
+//		if (spaceNum == 0)
+//			return;
+//		if (str[i] == ' ')
+//		{
+//			str[j--] = '0';
+//			str[j--] = '2';
+//			str[j--] = '%';
+//			spaceNum--;
+//		}
+//		else
+//		{
+//			str[j--] = str[i];
+//
+//		}
+//
+//
+//
+//	}
+//}
+//int main()
+//{
+//	char a[12] = " abc de";
+//	replaceSpace(a, strlen(a));
+//	cout << a;
+//	return 0;
+//}
 
 
 //1.判断两个链表是否相交，若相交，求交点。（假设链表不带环）//2.o（1）时间复杂度删除一个链表
