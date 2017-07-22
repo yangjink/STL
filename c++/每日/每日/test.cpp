@@ -1,25 +1,81 @@
+//查找一个字符串中第一个只出现两次的字符。比如：“abcdefabcdefabc”
+//中第一个只出现两次为‘d’，要求时间复杂度为O(N)，空间复杂度为O(1)
+//#include <iostream>
+//using namespace std;
+//int main()
+//{
+//	char arr[128]; int i = 0;
+//	for (i = 0; i < 128; i++)
+//	{
+//		arr[i] = 0;
+//	}
+//	char* str = "abcdefabcdefabc";
+//	int len = strlen(str);
+//	for (i = 0; i < len; i++)
+//	{
+//		arr[*str]++;
+//		str++;
+//	}
+//	for (i = 0; i < 128; i++)
+//	{
+//		if (arr[i] == 2)
+//		{
+//			printf("%c", i);
+//			break;
+//		}
+//	}
+//}
+
 //定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。
-
-class Solution {
-public:
-	void push(int value) {
-
-	}
-	void pop() {
-
-	}
-	int top() {
-
-	}
-	int min() {
-
-	}
-	stack<int> s1;
-};
-int main()
-{
-	return 0;
-}
+//#include <iostream>
+//using namespace std;
+//#include <string>
+//#include <stack>
+//class Solution {
+//public:
+//	void push(int value) {
+//		int min = 0;
+//		if (s1.empty())
+//		{
+//			min = value;
+//			s1.push(make_pair(min, value));
+//		}
+//		else
+//		{
+//			if (value < s1.top().first)
+//			{
+//				s1.push(make_pair(value, value));
+//			}
+//			else
+//			{
+//				min = s1.top().first;
+//				s1.push(make_pair(min,value));
+//			}
+//		}
+//	}
+//	void pop() {
+//		s1.pop();
+//	}
+//	int top() {
+//		return s1.top().second;
+//	}
+//	int min() {
+//		return s1.top().first;
+//	}
+//	stack<pair<int,int>> s1;
+//	
+//};
+//int main()
+//{
+//	Solution s;
+//	s.push(6);
+//	s.push(5);
+//	s.push(4);
+//	s.push(3);
+//	s.push(2);
+//	cout << s.min();
+//	return 0;
+//}
 
 
 ////替换空格O(1)
