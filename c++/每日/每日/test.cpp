@@ -1,3 +1,67 @@
+
+
+//--元素出栈、入栈顺序的合法性。如：入栈的序列（1,2,3,4,5），出栈序列为（4,5,3,2,1），则合法。
+//入栈的序列（1,2,3,4,5），出栈序列为（4,5,2,3,1），则不合法。
+//
+//#include <iostream>
+//#include <vector>
+//#include <stack>
+//using namespace std;
+//
+//bool IsPopOrder(vector<int> pushV, vector<int> popV) {
+//	int i = 0;
+//	int j = 0;
+//	stack<int> s1;
+//	while (i < pushV.size() && j < popV.size())
+//	{
+//		if (pushV[i] != popV[j])
+//		{
+//			s1.push(pushV[i++]);
+//		
+//			continue;
+//		}
+//		else{
+//			i++;
+//			j++;
+//		}
+//	}
+//
+//	if (j == popV.size())
+//		return true;
+//	else{
+//		while (j < popV.size())
+//		{
+//			if (popV[j] == s1.top())
+//			{
+//				j++;
+//				s1.pop();
+//			}
+//			else{
+//				return false;
+//			}
+//		}
+//		return true;
+//	}
+//
+//	return true;
+//}
+//int main()
+//{
+//	vector<int> v1, v2;
+//	v1.push_back(1);
+//	v1.push_back(2);
+//	v1.push_back(3);
+//	v1.push_back(4);
+//	v1.push_back(5);
+//	v2.push_back(5);
+//	v2.push_back(4);
+//	v2.push_back(3);
+//	v2.push_back(2);
+//	v2.push_back(1);
+//	cout<<IsPopOrder(v1, v2);
+//	return 0;
+//}
+
 //查找一个字符串中第一个只出现两次的字符。比如：“abcdefabcdefabc”
 //中第一个只出现两次为‘d’，要求时间复杂度为O(N)，空间复杂度为O(1)
 //#include <iostream>
