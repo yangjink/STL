@@ -1,7 +1,86 @@
+//给定一个整数N，那么N的阶乘N！末尾有多少个0呢？例如：N＝10，N！＝3 628 800，N！的末尾有两个0
+//分解质因数实际就是求有多少个5
+//int countFactorialZero(int N) {
+//	int ret = 0, i, j;
+//	for (i = 1; i <= N; i++)
+//	{
+//		j = i;
+//		while (j % 5 == 0)
+//		{
+//			ret++;
+//			j /= 5;
+//		}
+//	}
+//	return ret;
+//}
+
+//层序遍历二叉树
+//#include <iostream>
+//#include <vector>
+//#include <stack>
+//#include <queue>
+//
+//using namespace std;
+//
+//struct TreeNode {
+//	int val;
+//	struct TreeNode *left;
+//	struct TreeNode *right;
+//	TreeNode(int x) :
+//		val(x), left(NULL), right(NULL) {
+//	}
+//}; 
+//vector<int> PrintFromTopToBottom(TreeNode* root) {
+//	queue<TreeNode*> q;
+//	q.push(root);
+//	vector<int> v;
+//	while (q.size() != 0)
+//	{
+//		//cout << q.front()->val << " ";
+//		v.push_back(q.front()->val);
+//		if (q.front()->left != NULL)
+//			q.push(q.front()->left);
+//		if (q.front()->right != NULL)
+//			q.push(q.front()->right);
+//
+//		q.pop();
+//
+//	}
+//	return v;
+//}
+//int main()
+//{
+//	TreeNode* cur = new TreeNode(1);
+//	TreeNode* cur1 = new TreeNode(2);
+//	TreeNode* cur2 = new TreeNode(3);
+//	TreeNode* cur3 = new TreeNode(4);
+//	TreeNode* cur4 = new TreeNode(5);
+//	TreeNode* cur5 = new TreeNode(6);
+//	TreeNode* cur6 = new TreeNode(7);
+//	TreeNode* cur7 = new TreeNode(8);
+//	TreeNode* cur8 = new TreeNode(9);
+//	cur->left = cur1;
+//	cur->right = cur2;
+//
+//	cur1->left = cur3;
+//	cur1->right = cur4;
+//
+//	cur2->left = cur5;
+//	cur2->right = cur6;
+//
+//	cur3->right = cur8;
+//	//cur3->left = cur7;
+//	vector<int> v;
+//	v=PrintFromTopToBottom(cur);
+//	return 0;
+//}
+
 //二进制中1的个数
 //#include <iostream>
 //#include <vector>
 //#include <stack>
+//#include <queue>
+//
 //using namespace std;
 ///*int  NumberOf1(int n) {
 //	unsigned int num = 1;
@@ -26,7 +105,13 @@
 //}
 //int main()
 //{
-//	cout << NumberOf1(-1);
+//	//cout << NumberOf1(-1);
+//	queue<int> q;
+//	q.push(1);
+//	q.push(2);
+//	q.push(3);
+//	q.pop();
+//	cout << q.front();
 //	return 0;
 //}
 
