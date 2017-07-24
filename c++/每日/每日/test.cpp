@@ -1,5 +1,6 @@
 //给定一个整数N，那么N的阶乘N！末尾有多少个0呢？例如：N＝10，N！＝3 628 800，N！的末尾有两个0
 //分解质因数实际就是求有多少个5
+
 //int countFactorialZero(int N) {
 //	int ret = 0, i, j;
 //	for (i = 1; i <= N; i++)
