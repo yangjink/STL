@@ -1,4 +1,34 @@
-
+//二进制中1的个数
+//#include <iostream>
+//#include <vector>
+//#include <stack>
+//using namespace std;
+///*int  NumberOf1(int n) {
+//	unsigned int num = 1;
+//	int count = 0;
+//	for (int i = 0; i < 32; i++)
+//	{
+//		if (n & num)
+//			count++;
+//
+//		num = num << 1;
+//	}
+//	return count;
+//}*/
+//int  NumberOf1(int n) {
+//	int count = 0;
+//	while (n)
+//	{
+//		count++;
+//		n = (n - 1) & n;
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	cout << NumberOf1(-1);
+//	return 0;
+//}
 
 //--元素出栈、入栈顺序的合法性。如：入栈的序列（1,2,3,4,5），出栈序列为（4,5,3,2,1），则合法。
 //入栈的序列（1,2,3,4,5），出栈序列为（4,5,2,3,1），则不合法。
