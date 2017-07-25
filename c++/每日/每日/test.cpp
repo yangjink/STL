@@ -1,4 +1,64 @@
-//给定一个整数N，那么N的阶乘N！末尾有多少个0呢？例如：N＝10，N！＝3 628 800，N！的末尾有两个0
+//
+#include <iostream>
+#include <vector>
+#include <string.h>
+using namespace std;
+
+int main()
+{
+
+}
+//删除一个或多个后的最长偶串例如 abaababaab 输出6
+//int main()
+//{
+//	char s[200];
+//	vector<char> v;
+//	while (cin >> s)
+//	{
+//		int len = strlen(s)-2;
+//
+//		int mid = (len >> 1);
+//		int i = 0;
+//		v.resize(mid);
+//		while (i <mid)
+//		{
+//			v[i] = s[i];
+//			i++;
+//		}
+//		s[len] = '/0';
+//		char *m = &s[mid];
+//		while (len)
+//		{
+//			i = 0;
+//			while (*m != '0')
+//			{
+//				if (v[i] == *m)
+//				{
+//					i++;
+//					m++;
+//				}
+//				else
+//				{
+//					break;
+//				}
+//			}
+//			if (*m == '0')
+//			{
+//				cout << v.size() * 2;
+//				cout << endl;
+//				break;
+//			}
+//			len = len - 2;
+//			mid = mid - 1;
+//			m = &s[mid];
+//			v.pop_back();
+//			s[len] = '/0';
+//		}
+//
+//
+//	}
+//}
+// 给定一个整数N，那么N的阶乘N！末尾有多少个0呢？例如：N＝10，N！＝3 628 800，N！的末尾有两个0
 //分解质因数实际就是求有多少个5
 
 //int countFactorialZero(int N) {
