@@ -1,12 +1,41 @@
-//
+//一个数组中有一个数字的次数超过了数组的一半，求出这个字符。
+//如：int a[]={2,3,2,2,2,2,2,5,4,1,2,3}，求出超过一半的数字是2
 #include <iostream>
 #include <vector>
 #include <string.h>
 using namespace std;
 
+int MoreThanHalfNum_Solution(vector<int> numbers) {
+	vector<int> v;
+	v.resize(10);
+	int i = 0;
+	for (i = 0; i < 10; i++)
+	{
+		v[i] = 0;
+	}
+	int len = numbers.size();
+	int mid = len >> 1;
+	for (i = 0; i < len; i++){
+		v[numbers[i]]++;
+		if (v[numbers[i]] > mid)
+			return numbers[i];
+	}
+	return 0;
+}
 int main()
 {
-
+	vector<int> v; 
+	v.resize(9);
+	v[0] = 1;
+	v[1] = 2;
+	v[2] = 3;
+	v[3] = 2;
+	v[4] = 2;
+	v[5] = 2;
+	v[6] = 5;
+	v[7] = 4;
+	v[8] = 2;
+	cout<<MoreThanHalfNum_Solution(v);
 }
 //删除一个或多个后的最长偶串例如 abaababaab 输出6
 //int main()
