@@ -94,10 +94,16 @@
     <ClInclude Include="Alloc.h" />
     <ClInclude Include="BitSet.h" />
     <ClInclude Include="BloomFilter.h" />
+    <ClInclude Include="BTree.h" />
     <ClInclude Include="Construct.h" />
     <ClInclude Include="Iterator.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="map_set.h" />
+    <ClInclude Include="stl_map.h" />
+    <ClInclude Include="stl_multimap.h" />
+    <ClInclude Include="stl_multiset.h" />
+    <ClInclude Include="stl_set.h" />
+    <ClInclude Include="stl_tree.h" />
     <ClInclude Include="TypeTraites.h" />
     <ClInclude Include="UnorderedMap.h" />
     <ClInclude Include="UnorderedSet.h" />

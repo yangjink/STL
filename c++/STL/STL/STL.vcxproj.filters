@@ -56,5 +56,23 @@
     <ClInclude Include="BloomFilter.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="stl_tree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_set.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_multiset.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_map.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="stl_multimap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
