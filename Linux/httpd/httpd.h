@@ -3,29 +3,27 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <errno.h>
-#include <sys/types.h>
 #include <sys/socket.h>
-#include <arpa/inet.h>
+#include <sys/types.h>
 #include <netinet/in.h>
-#include <string.h>
+#include <arpa/inet.h>
 #include <fcntl.h>
-#include <ctype.h>
+#include <errno.h>
+#include <string.h>
+#include <unistd.h>
 #include <sys/stat.h>
+#include <sys/wait.h>
 
 #define SUCCESS 0
 #define NOTICE  1
 #define WARNING 2
 #define ERROR   3
 #define FATAL   4
-#define SIZE  1024
 
-int startup(const char *ip,int port);
-void print_log(const char* msg,int level);
-void* handler_request(void* arg);
-void exe_cgi(int sock,char *method,char *path,char *query_string);
+#define SIZE 1024
+
+void print_log(char *msg, int level);
+int startup(const char *ip, int  port);
+void *handler_request(void *arg);
+
 #endif
-
-
-
