@@ -1,42 +1,78 @@
-//一个数组中有一个数字的次数超过了数组的一半，求出这个字符。
-//如：int a[]={2,3,2,2,2,2,2,5,4,1,2,3}，求出超过一半的数字是2
 #include <iostream>
 #include <vector>
 #include <string.h>
 using namespace std;
-
-int MoreThanHalfNum_Solution(vector<int> numbers) {
-	vector<int> v;
-	v.resize(10);
-	int i = 0;
-	for (i = 0; i < 10; i++)
+bool Find(int target, vector<vector<int> > array) {
+	if (array.empty())
 	{
-		v[i] = 0;
+		return false;
 	}
-	int len = numbers.size();
-	int mid = len >> 1;
-	for (i = 0; i < len; i++){
-		v[numbers[i]]++;
-		if (v[numbers[i]] > mid)
-			return numbers[i];
+
+	int line = 0;
+	int row = array[0].size() - 1;
+
+	while (row != 0 && line<array.size() - 1)
+	{
+		if (array[line][row] = target)
+		{
+			return true;
+		}
+		else if (array[line][row] < target)
+		{
+			line++;
+		}
+		else{
+			row--;
+		}
 	}
-	return 0;
+	return false;
+
 }
 int main()
 {
-	vector<int> v; 
-	v.resize(9);
-	v[0] = 1;
-	v[1] = 2;
-	v[2] = 3;
-	v[3] = 2;
-	v[4] = 2;
-	v[5] = 2;
-	v[6] = 5;
-	v[7] = 4;
-	v[8] = 2;
-	cout<<MoreThanHalfNum_Solution(v);
+	return 0;
 }
+
+
+//一个数组中有一个数字的次数超过了数组的一半，求出这个字符。
+//如：int a[]={2,3,2,2,2,2,2,5,4,1,2,3}，求出超过一半的数字是2
+//#include <iostream>
+//#include <vector>
+//#include <string.h>
+//using namespace std;
+//
+//int MoreThanHalfNum_Solution(vector<int> numbers) {
+//	vector<int> v;
+//	v.resize(10);
+//	int i = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		v[i] = 0;
+//	}
+//	int len = numbers.size();
+//	int mid = len >> 1;
+//	for (i = 0; i < len; i++){
+//		v[numbers[i]]++;
+//		if (v[numbers[i]] > mid)
+//			return numbers[i];
+//	}
+//	return 0;
+//}
+//int main()
+//{
+//	vector<int> v; 
+//	v.resize(9);
+//	v[0] = 1;
+//	v[1] = 2;
+//	v[2] = 3;
+//	v[3] = 2;
+//	v[4] = 2;
+//	v[5] = 2;
+//	v[6] = 5;
+//	v[7] = 4;
+//	v[8] = 2;
+//	cout<<MoreThanHalfNum_Solution(v);
+//}
 //删除一个或多个后的最长偶串例如 abaababaab 输出6
 //int main()
 //{
@@ -399,13 +435,94 @@ int main()
 //#include<vector>
 //using namespace std;
 //
-//struct ListNode {
+//typedef struct ListNode {
 //	int val;
 //	struct ListNode *next;
 //	ListNode(int x) :
 //		val(x), next(NULL) {
 //	}
-//};
+//}Node;
+//Node* GetList()
+//{
+//	Node* prev = new Node(0);
+//	Node* head = prev;
+//	for (int i = 1; i < 5; i++)
+//	{
+//		Node* cur = new Node(i);
+//		prev->next = cur;
+//		prev = cur;
+//	}
+//	return head;
+//}
+//Node* Reversal(Node* left,Node* right)
+//{
+//	Node* cur = left;
+//	Node* next = left->next;
+//	while (next != right)
+//	{
+//		left = next;
+//		next = next->next;
+//		left->next = cur;
+//
+//		cur = left;
+//	}
+//	if (next != NULL)
+//	{
+//		next->next = cur;
+//		cur = next;
+//	}
+//	return cur;
+//}
+//Node* RotateList(Node* list, size_t k)
+//{
+//	if (list == NULL && list->next == NULL)
+//		return list;
+//	Node* head = NULL;
+//	Node* cur = list;
+//	size_t count = 0;
+//	Node* left = list;
+//	Node* right = list;
+//	Node* prev = NULL;
+//	Node* next = NULL;
+//	while (cur)
+//	{
+//		count++;
+//		if (count == k)
+//		{
+//			right = cur;
+//			next = cur->next;
+//			if (prev != NULL)
+//			{
+//				prev->next = Reversal(left, right);
+//			}
+//			else
+//			{
+//				Reversal(left, right);
+//				head = cur;
+//			}
+//			left->next = next;
+//
+//			left = next;
+//			prev = cur->next;
+//			count = 0;
+//		}
+//		else
+//		{
+//			next = cur->next;
+//		}
+//
+//		
+//		cur = next;
+//	}
+//	return head;
+//}
+//int main()//链表翻转。给出一个链表和一个数k，比如链表1→2→3→4→5→6，
+////k=2，翻转后2→1→4→3→6→5，若k=3,翻转后3→2→1→6→5→4，若k=4，翻转后4→3→2→1→5→6
+//{
+//	Node* head = GetList();
+//	RotateList(head,3);
+//	//Reversal(head, NULL);
+//}
 //class List
 //{
 //	typedef ListNode Node;
