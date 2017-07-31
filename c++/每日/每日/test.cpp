@@ -1,37 +1,117 @@
+//已知集合A和B的元素分别用不含头结点的单链表存储，函数difference()用于求解集合A与B的差集，
+//并将结果保存在集合A的单链表中。
+//例如，若集合A={5,10,20,15,25,30}，集合B={5,15,35,25}，完成计算后A={10,20,30}
 #include <iostream>
 #include <vector>
 #include <string.h>
+#include <assert.h>
 using namespace std;
-bool Find(int target, vector<vector<int> > array) {
-	if (array.empty())
-	{
-		return false;
-	}
-
-	int line = 0;
-	int row = array[0].size() - 1;
-
-	while (row != 0 && line<array.size() - 1)
-	{
-		if (array[line][row] = target)
-		{
-			return true;
-		}
-		else if (array[line][row] < target)
-		{
-			line++;
-		}
-		else{
-			row--;
-		}
-	}
-	return false;
+struct node
+{
+	int elem;
+	node* next;
+};
+void difference(node** LA, node* LB)
+{
 
 }
+//插入排序
+void PrintArray(int* a, size_t n)
+{
+	for (size_t i = 0; i < n; ++i)
+	{
+		cout << a[i] << " ";
+	}
+
+	cout << endl;
+}
+
+//template<class T, class Compare = less<T>>
+//void InsertSort()
+
+void InsertSort(int* a, size_t n)
+{
+	assert(a);
+
+	for (size_t i = 1; i < n ; ++i)
+	{
+		int end = i-1;
+		int tmp = a[i];
+		while (end >= 0 && a[end] > tmp)
+		{
+			a[end + 1] = a[end];
+			--end;
+		}
+
+		a[end + 1] = tmp;
+	}
+}
+
+void TestInsertSort()
+{
+	int a[] = { 2, 5, 4, 9, 3, 6, 8, 7, 1, 0 };
+	InsertSort(a, sizeof(a) / sizeof(a[0]));
+	PrintArray(a, sizeof(a) / sizeof(a[0]));
+}
+
 int main()
 {
+	TestInsertSort();
 	return 0;
 }
+//矩阵求值
+
+//bool Find(int target, vector<vector<int> > array) {
+//	if (array.empty())
+//	{
+//		return false;
+//	}
+//
+//	int line = 0;
+//	int row = array[0].size() - 1;
+//
+//	while (row >= 0 && line<array.size())
+//	{
+//		if (array[line][row] == target)
+//		{
+//			return true;
+//		}
+//		else if (array[line][row] < target)
+//		{
+//			line++;
+//		}
+//		else{
+//			row--;
+//		}
+//	}
+//	return false;
+//
+//}
+//int main()
+//{
+//	vector<vector<int>> v;
+//	v.resize(3);
+//	v[0].resize(3);
+//	v[1].resize(3);
+//	v[2].resize(3);
+//	/*v[0].resize(4);
+//	v[1].resize(4);
+//	v[0][0] = 1;
+//	v[0][1] = 2;
+//	v[0][2] = 8;
+//	v[0][3] = 9;
+//	v[1][0] = 4;
+//	v[1][1] = 7;
+//	v[1][2] = 10;
+//	v[1][3] = 13;*/
+//	for (int i = 0; i < 3;i++)
+//	for (int j = 0; j < 3; j++)
+//	{
+//		v[i][j] = i + j;
+//	}
+//	Find(3,v);
+//	return 0;
+//}
 
 
 //一个数组中有一个数字的次数超过了数组的一半，求出这个字符。
