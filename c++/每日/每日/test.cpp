@@ -1,64 +1,298 @@
+//#include <iostream>
+//#include <vector>
+//#include <algorithm>
+//using namespace std;
+//
+//int main()
+//{
+//	int h;
+//	int w;
+//	int i, j;
+//	vector<int> h1;
+//	vector<int> w1;
+//	cin >> h;
+//	h1.resize(h);
+//	for (i = 0; i < h;++i)
+//	{
+//		cin >> h1[i];
+//	}
+//	cin >> w;
+//	w1.resize(w);
+//	for (i = 0; i < w; i++)
+//	{
+//		cin >> w1[i];
+//	}
+//	vector<int>::iterator it1 = h1.begin();
+//	sort(it1,h1.end());
+//	vector<int>::iterator it2 = w1.begin();
+//	sort(it2, w1.end());
+//	int sum = 0;
+//	i = 0;
+//	for (j = 0; j < h; j++)
+//	{
+//		for (; i < w;i++)
+//		{
+//			if (w1[i] > h1[j])
+//			{
+//				sum++;
+//				i++;
+//				break;
+//			}
+//		}
+//	}
+//	cout << sum<<endl;
+//	return 0;
+//}
+//#include <iostream>  
+//#include <string>  
+//#include <assert.h>  
+//using namespace std;
+//void r(string &data);
+//void c(string lhs, string rhs, string &result)
+//{
+//	r(lhs);
+//	r(rhs);
+//	int i = 0, j = 0, res_i = 0;
+//	int tmp_i = 0;
+//	int carry = 0;
+//
+//	for (i = 0; i != lhs.size(); ++i, ++tmp_i)
+//	{
+//		res_i = tmp_i;
+//		for (j = 0; j != rhs.size(); ++j)
+//		{
+//			carry += (result[res_i] - '0') + (lhs[i] - '0') * (rhs[j] - '0');
+//			result[res_i++] = (carry % 10 + '0');
+//			carry /= 10;
+//		}
+//		while (carry)
+//		{
+//			result[res_i++] = (carry % 10 + '0');
+//			carry /= 10;
+//		}
+//	}
+//	for (int i = result.size() - 1; i >= 0; i--)
+//	{
+//		if (result[i] != '0')
+//			break;
+//		else
+//			result.pop_back();
+//	}
+//	r(result);
+//}
+//void r(string &data)
+//{
+//	char temp = '0';
+//	int end = data.size() - 1;
+//	int s = 0;
+//	assert(data.size() && s <= end);
+//	while (s < end)
+//	{
+//		temp = data[s];
+//		data[s++] = data[end];
+//		data[end--] = temp;
+//	}
+//}
+//int main()
+//{
+//	string a, b;
+//	cin >> a >> b;
+//	string result(a.size() + b.size(), '0');
+//	c(a, b, result);
+//	cout << result << endl;
+//	return 0;
+//}
+
+//#define _CRT_SECURE_NO_WARNINGS
+//#include <iostream>
+//#include <string>
+//using namespace std;
+//int main()
+//{
+//	string s1;
+//	string s2;
+//
+//	return 0;
+//}
+//#include<stdio.h>  
+//#include<string.h>  
+//#define MAX 100  
+//char a[MAX], b[MAX];//用字符串进行数字的输入   
+//int x[MAX + 10], y[MAX + 10], z[MAX * 2 + 10];//积的位数最多是因数位数的两倍   
+//int main()
+//{
+//	int len1, len2, i, j;
+//	while (scanf("%s %s", a, b))
+//	{
+//		len1 = strlen(a);
+//		len2 = strlen(b);
+//		for (j = 0, i = len1 - 1; i >= 0; i--)//将字符串中字符转化为数字，并倒序储存   
+//			x[j++] = a[i] - '0';
+//		for (j = 0, i = len2 - 1; i >= 0; i--)
+//			y[j++] = b[i] - '0';
+//		for (i = 0; i<len1; i++)//将因数各个位上的数字与另一个各个位上的数字相乘   
+//		{
+//			for (j = 0; j<len2; j++)
+//				z[i + j] = z[i + j] + x[i] * y[j];//先乘起来，后面统一进行进位   
+//		}
+//		for (i = 0; i<MAX * 2; i++)//进行进位   
+//		{
+//			if (z[i] >= 10)  //若>=10   
+//			{
+//				z[i + 1] = z[i + 1] + z[i] / 10;  //将十位上数字进位   
+//				z[i] = z[i] % 10;  //将个位上的数字留下  
+//			}
+//		}
+//		for (i = MAX * 2; i>0; i--)  //删除0的前缀   
+//		{
+//			if (z[i] == 0)
+//				continue;
+//			else
+//				break;
+//		}
+//		for (; i >= 0; i--)  //倒序输出   
+//			printf("%d", z[i]);
+//		printf("\n");
+//	}
+//	return 0;
+//}
+//#include <iostream>
+//#include <vector>
+//#include <assert.h>
+//using namespace std;
+//void Tiao(int& m1,int& m2,int& m3)
+//{
+//	if (m1 > m2)
+//	{
+//		if (m2 < m3)
+//		{
+//			if (m1 > m3)
+//			{
+//				swap(m1,m2);
+//				swap(m1,m3);
+//			}
+//			else//m1<m3
+//			{
+//				swap(m1,m2);
+//			}
+//		}
+//		else//m2 > m3
+//		{
+//			swap(m1, m3);
+//		}
+//	}
+//	else//m1<m2
+//	{
+//		if (m2 < m3)
+//		{
+//		}
+//		else//m2 > m3
+//		{
+//			if (m1 > m3)
+//			{
+//				swap(m1, m3);
+//				swap(m3, m2);
+//			}
+//			else//m1<m3
+//			{
+//				swap(m3, m2);
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int m1 = 0;
+//	int m2 = 0;
+//	int m3 = 0;
+//	int n = 0;
+//	int x = 0;
+//	cin >> n;
+//	if (n < 3)
+//		return 0;
+//	cin >> x;
+//	m1 = x;
+//	cin >> x;
+//	m2 = x;
+//	cin >> x;
+//	m3 = x;
+//	Tiao(m1, m2, m3);
+//	int i = 3;
+//
+//	for (; i < n; i++)
+//	{
+//		cin >> x;
+//		if (x > m1)
+//		{
+//			m1 = x;
+//			Tiao(m1, m2, m3);
+//		}
+//	}
+//	cout << m1*m2*m3<<endl;
+//	return 0;
+//
+//}
 //已知集合A和B的元素分别用不含头结点的单链表存储，函数difference()用于求解集合A与B的差集，
 //并将结果保存在集合A的单链表中。
 //例如，若集合A={5,10,20,15,25,30}，集合B={5,15,35,25}，完成计算后A={10,20,30}
-#include <iostream>
-#include <vector>
-#include <string.h>
-#include <assert.h>
-using namespace std;
-struct node
-{
-	int elem;
-	node* next;
-};
-void difference(node** LA, node* LB)
-{
-
-}
-//插入排序
-void PrintArray(int* a, size_t n)
-{
-	for (size_t i = 0; i < n; ++i)
-	{
-		cout << a[i] << " ";
-	}
-
-	cout << endl;
-}
-
-//template<class T, class Compare = less<T>>
-//void InsertSort()
-
-void InsertSort(int* a, size_t n)
-{
-	assert(a);
-
-	for (size_t i = 1; i < n ; ++i)
-	{
-		int end = i-1;
-		int tmp = a[i];
-		while (end >= 0 && a[end] > tmp)
-		{
-			a[end + 1] = a[end];
-			--end;
-		}
-
-		a[end + 1] = tmp;
-	}
-}
-
-void TestInsertSort()
-{
-	int a[] = { 2, 5, 4, 9, 3, 6, 8, 7, 1, 0 };
-	InsertSort(a, sizeof(a) / sizeof(a[0]));
-	PrintArray(a, sizeof(a) / sizeof(a[0]));
-}
-
-int main()
-{
-	TestInsertSort();
-	return 0;
-}
+//#include <iostream>
+//#include <vector>
+//#include <string.h>
+//#include <assert.h>
+//using namespace std;
+//struct node
+//{
+//	int elem;
+//	node* next;
+//};
+//void difference(node** LA, node* LB)
+//{
+//
+//}
+////插入排序
+//void PrintArray(int* a, size_t n)
+//{
+//	for (size_t i = 0; i < n; ++i)
+//	{
+//		cout << a[i] << " ";
+//	}
+//
+//	cout << endl;
+//}
+//
+////template<class T, class Compare = less<T>>
+////void InsertSort()
+//
+//void InsertSort(int* a, size_t n)
+//{
+//	assert(a);
+//
+//	for (size_t i = 1; i < n ; ++i)
+//	{
+//		int end = i-1;
+//		int tmp = a[i];
+//		while (end >= 0 && a[end] > tmp)
+//		{
+//			a[end + 1] = a[end];
+//			--end;
+//		}
+//
+//		a[end + 1] = tmp;
+//	}
+//}
+//
+//void TestInsertSort()
+//{
+//	int a[] = { 2, 5, 4, 9, 3, 6, 8, 7, 1, 0 };
+//	InsertSort(a, sizeof(a) / sizeof(a[0]));
+//	PrintArray(a, sizeof(a) / sizeof(a[0]));
+//}
+//
+//int main()
+//{
+//	TestInsertSort();
+//	return 0;
+//}
 //矩阵求值
 
 //bool Find(int target, vector<vector<int> > array) {
