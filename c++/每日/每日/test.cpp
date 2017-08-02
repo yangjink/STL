@@ -1,3 +1,94 @@
+//¹«¹²×æÏÈ
+#include <iostream>
+#include <vector>
+#include <stack>
+#include <queue>
+
+using namespace std;
+
+struct TreeNode {
+	int val;
+	struct TreeNode *left;
+	struct TreeNode *right;
+	TreeNode(int x) :
+		val(x), left(NULL), right(NULL) {
+	}
+}; 
+bool creatPath(TreeNode* Node, TreeNode* root,stack<TreeNode*>& v)
+{
+	if (root == Node)
+	{
+		v.push(root);
+		return true;
+	}
+	v.push(root);
+	bool found = false;
+	if (root->left != NULL)
+		found = creatPath(Node,root->left,v);
+	if (!found && root->right != NULL)
+		found = creatPath(Node,root->right,v);
+	if (!found)
+		v.pop();
+	return found;
+}
+TreeNode* Ancestor(TreeNode* Node1, TreeNode* Node2, TreeNode* root)
+{
+	stack<TreeNode*> v1;
+	stack<TreeNode*> v2;
+	creatPath(Node1, root, v1);
+	creatPath(Node2, root, v2);
+	while (1)
+	{
+		if (v1.size() > v2.size())
+		{
+			v1.pop();
+		}
+		else if (v1.size() < v2.size())
+		{
+			v2.pop();
+		}
+		else
+		{
+			if (v1.top() == v2.top())
+			{
+				return v1.top();
+			}
+			else
+			{
+				v1.pop();
+				v2.pop();
+			}
+		}
+	}
+    return NULL;
+}
+int main()
+{
+	TreeNode* cur = new TreeNode(1);
+	TreeNode* cur1 = new TreeNode(2);
+	TreeNode* cur2 = new TreeNode(3);
+	TreeNode* cur3 = new TreeNode(4);
+	TreeNode* cur4 = new TreeNode(5);
+	TreeNode* cur5 = new TreeNode(6);
+	TreeNode* cur6 = new TreeNode(7);
+	TreeNode* cur7 = new TreeNode(8);
+	TreeNode* cur8 = new TreeNode(9);
+	cur->left = cur1;
+	cur->right = cur2;
+
+	cur1->left = cur3;
+	cur1->right = cur4;
+
+	cur2->left = cur5;
+	cur2->right = cur6;
+
+	cur3->right = cur8;
+	//cur3->left = cur7;
+	TreeNode* tmp;
+	tmp = Ancestor(cur2,cur3,cur);
+	return 0;
+}
+
 //#include <iostream>
 //#include <vector>
 //#include <algorithm>
