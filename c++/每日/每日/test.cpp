@@ -1,11 +1,10 @@
-//公共祖先
+//前序和中序确立二叉树
 #include <iostream>
 #include <vector>
 #include <stack>
 #include <queue>
 
 using namespace std;
-
 struct TreeNode {
 	int val;
 	struct TreeNode *left;
@@ -13,54 +12,159 @@ struct TreeNode {
 	TreeNode(int x) :
 		val(x), left(NULL), right(NULL) {
 	}
-}; 
-bool creatPath(TreeNode* Node, TreeNode* root,stack<TreeNode*>& v)
+};
+//int findNum(int num,vector<int>& v)
+//{
+//	int i = 0;
+//	while (!v.empty())
+//	{
+//		if (v[i] != num)
+//		{
+//			++i;
+//		}
+//		else
+//		{
+//			break;
+//		}
+//	}
+//	return i;
+//}
+//TreeNode* produce(vector<int>& pre, vector<int>& vin,int p,int vlength,int v,int plength)
+//{
+//	TreeNode* root = new TreeNode(pre[p++]);
+//	if (p >= plength)
+//	{
+//		return root;
+//	}
+//	int vpre = findNum(pre[p], vin);
+//	int v = 0;
+//	int mid = vpre;
+//	TreeNode* cur = root;
+//	while (p < pre.size())
+//	{
+//		v = findNum(pre[p], vin);
+//		if (v > vpre)
+//		{
+//			cur->right = new TreeNode(pre[p++]);
+//			vpre = v;
+//			cur = cur->right;
+//		}
+//		else
+//		{
+//			cur->left = new TreeNode(pre[p++]);
+//			cur = cur->left;
+//			vpre = v;
+//		}
+//	}
+//	return root;
+//}
+//}
+//TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin) {
+//	TreeNode* root = new TreeNode(pre[0]);
+//	int p = 1;
+//	int vpre = findNum(pre[0],vin);
+//	int v = 0;
+//	int mid = vpre;
+//	TreeNode* cur = root;
+//	while (p < pre.size())
+//	{
+//		v = findNum(pre[p],vin);
+//		if (v > mid && vpre <= mid)
+//		{
+//			cur = root;
+//		}
+//		if (v > vpre)
+//		{
+//			cur->right = new TreeNode(pre[p++]);
+//			vpre = v;
+//			cur = cur->right;
+//		}
+//		else
+//		{
+//			cur->left = new TreeNode(pre[p++]);
+//			cur = cur->left;
+//			vpre = v;
+//		}
+//	}
+//	return root;
+//}
+////公共祖先
+//
+//
+//
+//bool creatPath(TreeNode* Node, TreeNode* root,stack<TreeNode*>& v)
+//{
+//	if (root == Node)
+//	{
+//		v.push(root);
+//		return true;
+//	}
+//	v.push(root);
+//	bool found = false;
+//	if (root->left != NULL)
+//		found = creatPath(Node,root->left,v);
+//	if (!found && root->right != NULL)
+//		found = creatPath(Node,root->right,v);
+//	if (!found)
+//		v.pop();
+//	return found;
+//}
+//TreeNode* Ancestor(TreeNode* Node1, TreeNode* Node2, TreeNode* root)
+//{
+//	stack<TreeNode*> v1;
+//	stack<TreeNode*> v2;
+//	creatPath(Node1, root, v1);
+//	creatPath(Node2, root, v2);
+//	while (1)
+//	{
+//		if (v1.size() > v2.size())
+//		{
+//			v1.pop();
+//		}
+//		else if (v1.size() < v2.size())
+//		{
+//			v2.pop();
+//		}
+//		else
+//		{
+//			if (v1.top() == v2.top())
+//			{
+//				return v1.top();
+//			}
+//			else
+//			{
+//				v1.pop();
+//				v2.pop();
+//			}
+//		}
+//	}
+//    return NULL;
+//}
+void Inorder(TreeNode* root,TreeNode*& prev)
 {
-	if (root == Node)
+	if (root == NULL)
+		return;
+	
+	Inorder(root->left,prev);
+	if (prev != NULL)
 	{
-		v.push(root);
-		return true;
+		prev->right = root;
 	}
-	v.push(root);
-	bool found = false;
-	if (root->left != NULL)
-		found = creatPath(Node,root->left,v);
-	if (!found && root->right != NULL)
-		found = creatPath(Node,root->right,v);
-	if (!found)
-		v.pop();
-	return found;
+	root->left = prev;
+	prev = root;
+	Inorder(root->right,prev);
+	
 }
-TreeNode* Ancestor(TreeNode* Node1, TreeNode* Node2, TreeNode* root)
+TreeNode* Convert(TreeNode* pRootOfTree)
 {
-	stack<TreeNode*> v1;
-	stack<TreeNode*> v2;
-	creatPath(Node1, root, v1);
-	creatPath(Node2, root, v2);
-	while (1)
+	TreeNode* prev = NULL;
+	TreeNode* cur = pRootOfTree;
+	while (cur->left != NULL)
 	{
-		if (v1.size() > v2.size())
-		{
-			v1.pop();
-		}
-		else if (v1.size() < v2.size())
-		{
-			v2.pop();
-		}
-		else
-		{
-			if (v1.top() == v2.top())
-			{
-				return v1.top();
-			}
-			else
-			{
-				v1.pop();
-				v2.pop();
-			}
-		}
+		cur = cur->left;
 	}
-    return NULL;
+	Inorder(pRootOfTree, prev);
+	return cur;
 }
 int main()
 {
@@ -83,9 +187,32 @@ int main()
 	cur2->right = cur6;
 
 	cur3->right = cur8;
-	//cur3->left = cur7;
-	TreeNode* tmp;
-	tmp = Ancestor(cur2,cur3,cur);
+	cur3->left = cur7;
+	/*TreeNode* tmp;
+	tmp = Ancestor(cur2,cur3,cur);*/
+	//vector<int> v1;
+	//vector<int> v2;//前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}
+	//v1.push_back(1);
+	//v1.push_back(2);
+	//v1.push_back(4);
+	//v1.push_back(7);
+	//v1.push_back(3);
+	//v1.push_back(5);
+	//v1.push_back(6);
+	//v1.push_back(8);
+	//v2.push_back(4);
+	//v2.push_back(7);
+	//v2.push_back(2);
+	//v2.push_back(1);
+	//v2.push_back(5);
+	//v2.push_back(3);
+	//v2.push_back(8);
+	//v2.push_back(6);
+	//cur = NULL;
+	//cur = reConstructBinaryTree(v1, v2);
+	TreeNode* prev = NULL;
+	prev=Convert(cur);
+	cout << endl;
 	return 0;
 }
 
