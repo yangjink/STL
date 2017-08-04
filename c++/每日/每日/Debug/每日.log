@@ -1,9 +1,10 @@
-﻿生成启动时间为 2017/8/4 14:53:11。
+﻿生成启动时间为 2017/8/4 21:56:18。
      1>项目“D:\作业\c++\每日\每日\每日.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
          D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt test.cpp
          test.cpp
-     1>d:\作业\c++\每日\每日\test.cpp(27): warning C4018: “<=”: 有符号/无符号不匹配
+     1>d:\作业\c++\每日\每日\test.cpp(210): warning C4305: “初始化”: 从“__int64”到“int”截断
+     1>d:\作业\c++\每日\每日\test.cpp(210): warning C4309: “初始化”: 截断常量值
        Link:
          D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\作业\c++\每日\Debug\每日.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\作业\c++\每日\Debug\每日.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\作业\c++\每日\Debug\每日.lib" /MACHINE:X86 Debug\test.obj
          每日.vcxproj -> D:\作业\c++\每日\Debug\每日.exe
@@ -11,4 +12,4 @@
 
 生成成功。
 
-已用时间 00:00:01.06
+已用时间 00:00:01.36

@@ -1,14 +1,21 @@
+
+
+
 //选择排序
-//#include <iostream>
-//using namespace std;
-//void PrintArray(int* a, int n)
-//{
-//	for (int i = 0; i < n; ++i)
-//	{
-//		cout << a[i] << " ";
-//	}
-//	cout << endl;
-//}
+#include <iostream>
+#include <assert.h>
+#include <stack>
+#include <stdlib.h>
+#include <map>
+using namespace std;
+void PrintArray(int* a, int n)
+{
+	for (int i = 0; i < n; ++i)
+	{
+		cout << a[i] << " ";
+	}
+	cout << endl;
+}
 //void SelectionSort(int *a,size_t n)
 //{
 //	if (a == NULL)
@@ -99,11 +106,125 @@
 //	HeapSort(a, sizeof(a) / sizeof(a[0]));
 //	PrintArray(a, sizeof(a) / sizeof(a[0]));
 //}
-//int main()
-//{
-//	//TestSelectSort();
-//	TestHeapSort();
-//}
+//快排挖坑法
+int Partition(int *a,int left,int right)
+{
+	assert(a);
+	assert(left < right);
+	int index = a[right];
+	while (left < right)
+	{
+		while (left < right && a[left] <= index)
+		{
+			++left;
+		}
+		a[right] = a[left];
+		while (left < right && a[right] >= index)
+		{
+			right--;
+		}
+		a[left] = a[right];
+	}
+	a[left] = index;
+	return left;
+}
+
+void QuickSortR(int *a, int left,int right)//[]
+{
+	if (left >= right)
+	{
+		return;
+	}
+	int div = Partition(a,left,right);
+	QuickSortR(a, left, div - 1);
+	QuickSortR(a, div + 1, right);
+}
+void QuickSort(int *a, int n)//[]
+{
+	assert(a);
+	if (n == 1 || n == 0)
+	{
+		return;
+	}
+	stack<int> s;
+	s.push(0);
+	s.push(n - 1);
+	int left = 0;
+	int right = n - 1;
+	while (!s.empty())
+	{
+		right = s.top();
+		s.pop();
+		left = s.top();
+		s.pop();
+		int div = Partition(a,left,right);
+
+		if (div-1 > left)
+		{
+			s.push(left);
+			s.push(div - 1);
+		}
+		if (div+1 < right)
+		{
+			s.push(div+1);
+			s.push(right);
+		}
+	}
+}
+//冒泡排序
+void BubbleSort(int *a, int n)
+{
+	int i = 0;
+	int j = 0;
+	int tab = 1;
+	for (i = 0; i < n && tab; i++)
+	{
+		tab = 0;
+		for (j = 0; j < n - i-1; j++)
+		{
+			if (a[j] > a[j + 1])
+			{
+				swap(a[j], a[j + 1]);
+				tab = 1;
+			}
+		}
+	}
+}
+void TestBubbleSort()
+{
+	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,0,9};
+	BubbleSort(a, sizeof(a) / sizeof(a[0]));
+	PrintArray(a, sizeof(a) / sizeof(a[0]));
+}
+void TestQuickSort()
+{
+	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2, 0, 9 };
+	QuickSort(a, sizeof(a) / sizeof(a[0])-1);
+	PrintArray(a, sizeof(a) / sizeof(a[0]));
+}
+int main()
+{
+	//TestSelectSort();
+	//TestHeapSort();
+	//TestBubbleSort();
+	//TestQuickSort();2147483648
+	int a = 9646324351;
+	char buff[11];
+	_itoa_s(a,buff,10);
+	printf("%s",buff);
+	map<char, int> m;
+	//Ⅰ（1）、X（10）、C（100）、M（1000）、V（5）、L（50）、D（500）
+	m.insert(make_pair('I', 1));
+	m.insert(make_pair('X', 10));
+	m.insert(make_pair('C', 100));
+	m.insert(make_pair('M', 1000));
+	m.insert(make_pair('V', 5));
+	m.insert(make_pair('L', 50));
+	m.insert(make_pair('D', 500));
+	string s("123");
+	
+	int value = m[s[0]];
+}
 
 
 //前序和中序确立二叉树
