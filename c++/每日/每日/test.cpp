@@ -1,220 +1,328 @@
-//前序和中序确立二叉树
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <queue>
-
-using namespace std;
-struct TreeNode {
-	int val;
-	struct TreeNode *left;
-	struct TreeNode *right;
-	TreeNode(int x) :
-		val(x), left(NULL), right(NULL) {
-	}
-};
-//int findNum(int num,vector<int>& v)
+//选择排序
+//#include <iostream>
+//using namespace std;
+//void PrintArray(int* a, int n)
 //{
-//	int i = 0;
-//	while (!v.empty())
+//	for (int i = 0; i < n; ++i)
 //	{
-//		if (v[i] != num)
+//		cout << a[i] << " ";
+//	}
+//	cout << endl;
+//}
+//void SelectionSort(int *a,size_t n)
+//{
+//	if (a == NULL)
+//	{
+//		return;
+//	}
+//	int max = 0;
+//	int min = 0;
+//	size_t left = 0;
+//	size_t right = n-1;
+//	int i = 0;
+//	while (left < right)
+//	{
+//		max = right;
+//		min = left;
+//		for (i = left; i <= right; ++i)
 //		{
-//			++i;
+//			if (a[i] >= a[max])
+//			{
+//				max = i;
+//			}
+//			if (a[i] <= a[min])
+//			{
+//				min = i;
+//			}
+//		}
+//		swap(a[left], a[min]);
+//		if (max == left)
+//		{
+//			max = min;
+//		}
+//		swap(a[right], a[max]);
+//		++left;
+//		--right;
+//		PrintArray(a, n);
+//	}
+//
+//
+//}
+//void Adjust(int *a,size_t n,size_t root)
+//{
+//	size_t parent = root;
+//	size_t child = parent * 2 + 1;
+//	while (child < n)
+//	{
+//		if (child + 1 < n && a[child + 1] > a[child])
+//		{
+//			++child;
+//		}
+//		if (a[parent] < a[child])
+//		{
+//			swap(a[parent], a[child]);
+//			parent = child;
+//			child = parent * 2 + 1;
 //		}
 //		else
 //		{
 //			break;
 //		}
 //	}
-//	return i;
 //}
-//TreeNode* produce(vector<int>& pre, vector<int>& vin,int p,int vlength,int v,int plength)
+//void HeapSort(int *a, size_t n)//堆排序
 //{
-//	TreeNode* root = new TreeNode(pre[p++]);
-//	if (p >= plength)
+//	if (a == NULL)
+//		return;
+//	for (int i = (n >> 1) - 1; i >= 0; --i)
 //	{
-//		return root;
+//		Adjust(a,n,i);
 //	}
-//	int vpre = findNum(pre[p], vin);
-//	int v = 0;
-//	int mid = vpre;
-//	TreeNode* cur = root;
-//	while (p < pre.size())
+//	
+//	for (int i = n - 1; i >= 1; --i)
 //	{
-//		v = findNum(pre[p], vin);
-//		if (v > vpre)
-//		{
-//			cur->right = new TreeNode(pre[p++]);
-//			vpre = v;
-//			cur = cur->right;
-//		}
-//		else
-//		{
-//			cur->left = new TreeNode(pre[p++]);
-//			cur = cur->left;
-//			vpre = v;
-//		}
+//		swap(a[0], a[i]);
+//		PrintArray(a, n);
+//		Adjust(a, i, 0);
 //	}
-//	return root;
-//}
-//}
-//TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin) {
-//	TreeNode* root = new TreeNode(pre[0]);
-//	int p = 1;
-//	int vpre = findNum(pre[0],vin);
-//	int v = 0;
-//	int mid = vpre;
-//	TreeNode* cur = root;
-//	while (p < pre.size())
-//	{
-//		v = findNum(pre[p],vin);
-//		if (v > mid && vpre <= mid)
-//		{
-//			cur = root;
-//		}
-//		if (v > vpre)
-//		{
-//			cur->right = new TreeNode(pre[p++]);
-//			vpre = v;
-//			cur = cur->right;
-//		}
-//		else
-//		{
-//			cur->left = new TreeNode(pre[p++]);
-//			cur = cur->left;
-//			vpre = v;
-//		}
-//	}
-//	return root;
-//}
-////公共祖先
 //
-//
-//
-//bool creatPath(TreeNode* Node, TreeNode* root,stack<TreeNode*>& v)
+//}
+//void TestSelectSort()
 //{
-//	if (root == Node)
-//	{
-//		v.push(root);
-//		return true;
-//	}
-//	v.push(root);
-//	bool found = false;
-//	if (root->left != NULL)
-//		found = creatPath(Node,root->left,v);
-//	if (!found && root->right != NULL)
-//		found = creatPath(Node,root->right,v);
-//	if (!found)
-//		v.pop();
-//	return found;
+//	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,9,0 };
+//	SelectionSort(a, sizeof(a) / sizeof(a[0]));
+//	PrintArray(a, sizeof(a) / sizeof(a[0]));
 //}
-//TreeNode* Ancestor(TreeNode* Node1, TreeNode* Node2, TreeNode* root)
+//void TestHeapSort()
 //{
-//	stack<TreeNode*> v1;
-//	stack<TreeNode*> v2;
-//	creatPath(Node1, root, v1);
-//	creatPath(Node2, root, v2);
-//	while (1)
-//	{
-//		if (v1.size() > v2.size())
-//		{
-//			v1.pop();
-//		}
-//		else if (v1.size() < v2.size())
-//		{
-//			v2.pop();
-//		}
-//		else
-//		{
-//			if (v1.top() == v2.top())
-//			{
-//				return v1.top();
-//			}
-//			else
-//			{
-//				v1.pop();
-//				v2.pop();
-//			}
-//		}
-//	}
-//    return NULL;
+//	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,0,9};
+//	HeapSort(a, sizeof(a) / sizeof(a[0]));
+//	PrintArray(a, sizeof(a) / sizeof(a[0]));
 //}
-void Inorder(TreeNode* root,TreeNode*& prev)
-{
-	if (root == NULL)
-		return;
-	
-	Inorder(root->left,prev);
-	if (prev != NULL)
-	{
-		prev->right = root;
-	}
-	root->left = prev;
-	prev = root;
-	Inorder(root->right,prev);
-	
-}
-TreeNode* Convert(TreeNode* pRootOfTree)
-{
-	TreeNode* prev = NULL;
-	TreeNode* cur = pRootOfTree;
-	while (cur->left != NULL)
-	{
-		cur = cur->left;
-	}
-	Inorder(pRootOfTree, prev);
-	return cur;
-}
-int main()
-{
-	TreeNode* cur = new TreeNode(1);
-	TreeNode* cur1 = new TreeNode(2);
-	TreeNode* cur2 = new TreeNode(3);
-	TreeNode* cur3 = new TreeNode(4);
-	TreeNode* cur4 = new TreeNode(5);
-	TreeNode* cur5 = new TreeNode(6);
-	TreeNode* cur6 = new TreeNode(7);
-	TreeNode* cur7 = new TreeNode(8);
-	TreeNode* cur8 = new TreeNode(9);
-	cur->left = cur1;
-	cur->right = cur2;
+//int main()
+//{
+//	//TestSelectSort();
+//	TestHeapSort();
+//}
 
-	cur1->left = cur3;
-	cur1->right = cur4;
 
-	cur2->left = cur5;
-	cur2->right = cur6;
-
-	cur3->right = cur8;
-	cur3->left = cur7;
-	/*TreeNode* tmp;
-	tmp = Ancestor(cur2,cur3,cur);*/
-	//vector<int> v1;
-	//vector<int> v2;//前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}
-	//v1.push_back(1);
-	//v1.push_back(2);
-	//v1.push_back(4);
-	//v1.push_back(7);
-	//v1.push_back(3);
-	//v1.push_back(5);
-	//v1.push_back(6);
-	//v1.push_back(8);
-	//v2.push_back(4);
-	//v2.push_back(7);
-	//v2.push_back(2);
-	//v2.push_back(1);
-	//v2.push_back(5);
-	//v2.push_back(3);
-	//v2.push_back(8);
-	//v2.push_back(6);
-	//cur = NULL;
-	//cur = reConstructBinaryTree(v1, v2);
-	TreeNode* prev = NULL;
-	prev=Convert(cur);
-	cout << endl;
-	return 0;
-}
+//前序和中序确立二叉树
+//#include <iostream>
+//#include <vector>
+//#include <stack>
+//#include <queue>
+//
+//using namespace std;
+//struct TreeNode {
+//	int val;
+//	struct TreeNode *left;
+//	struct TreeNode *right;
+//	TreeNode(int x) :
+//		val(x), left(NULL), right(NULL) {
+//	}
+//};
+////int findNum(int num,vector<int>& v)
+////{
+////	int i = 0;
+////	while (!v.empty())
+////	{
+////		if (v[i] != num)
+////		{
+////			++i;
+////		}
+////		else
+////		{
+////			break;
+////		}
+////	}
+////	return i;
+////}
+////TreeNode* produce(vector<int>& pre, vector<int>& vin,int p,int vlength,int v,int plength)
+////{
+////	TreeNode* root = new TreeNode(pre[p++]);
+////	if (p >= plength)
+////	{
+////		return root;
+////	}
+////	int vpre = findNum(pre[p], vin);
+////	int v = 0;
+////	int mid = vpre;
+////	TreeNode* cur = root;
+////	while (p < pre.size())
+////	{
+////		v = findNum(pre[p], vin);
+////		if (v > vpre)
+////		{
+////			cur->right = new TreeNode(pre[p++]);
+////			vpre = v;
+////			cur = cur->right;
+////		}
+////		else
+////		{
+////			cur->left = new TreeNode(pre[p++]);
+////			cur = cur->left;
+////			vpre = v;
+////		}
+////	}
+////	return root;
+////}
+////}
+////TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin) {
+////	TreeNode* root = new TreeNode(pre[0]);
+////	int p = 1;
+////	int vpre = findNum(pre[0],vin);
+////	int v = 0;
+////	int mid = vpre;
+////	TreeNode* cur = root;
+////	while (p < pre.size())
+////	{
+////		v = findNum(pre[p],vin);
+////		if (v > mid && vpre <= mid)
+////		{
+////			cur = root;
+////		}
+////		if (v > vpre)
+////		{
+////			cur->right = new TreeNode(pre[p++]);
+////			vpre = v;
+////			cur = cur->right;
+////		}
+////		else
+////		{
+////			cur->left = new TreeNode(pre[p++]);
+////			cur = cur->left;
+////			vpre = v;
+////		}
+////	}
+////	return root;
+////}
+//////公共祖先
+////
+////
+////
+////bool creatPath(TreeNode* Node, TreeNode* root,stack<TreeNode*>& v)
+////{
+////	if (root == Node)
+////	{
+////		v.push(root);
+////		return true;
+////	}
+////	v.push(root);
+////	bool found = false;
+////	if (root->left != NULL)
+////		found = creatPath(Node,root->left,v);
+////	if (!found && root->right != NULL)
+////		found = creatPath(Node,root->right,v);
+////	if (!found)
+////		v.pop();
+////	return found;
+////}
+////TreeNode* Ancestor(TreeNode* Node1, TreeNode* Node2, TreeNode* root)
+////{
+////	stack<TreeNode*> v1;
+////	stack<TreeNode*> v2;
+////	creatPath(Node1, root, v1);
+////	creatPath(Node2, root, v2);
+////	while (1)
+////	{
+////		if (v1.size() > v2.size())
+////		{
+////			v1.pop();
+////		}
+////		else if (v1.size() < v2.size())
+////		{
+////			v2.pop();
+////		}
+////		else
+////		{
+////			if (v1.top() == v2.top())
+////			{
+////				return v1.top();
+////			}
+////			else
+////			{
+////				v1.pop();
+////				v2.pop();
+////			}
+////		}
+////	}
+////    return NULL;
+////}
+//void Inorder(TreeNode* root,TreeNode*& prev)
+//{
+//	if (root == NULL)
+//		return;
+//	
+//	Inorder(root->left,prev);
+//	if (prev != NULL)
+//	{
+//		prev->right = root;
+//	}
+//	root->left = prev;
+//	prev = root;
+//	Inorder(root->right,prev);
+//	
+//}
+//TreeNode* Convert(TreeNode* pRootOfTree)
+//{
+//	TreeNode* prev = NULL;
+//	TreeNode* cur = pRootOfTree;
+//	while (cur->left != NULL)
+//	{
+//		cur = cur->left;
+//	}
+//	Inorder(pRootOfTree, prev);
+//	return cur;
+//}
+//int main()
+//{
+//	TreeNode* cur = new TreeNode(1);
+//	TreeNode* cur1 = new TreeNode(2);
+//	TreeNode* cur2 = new TreeNode(3);
+//	TreeNode* cur3 = new TreeNode(4);
+//	TreeNode* cur4 = new TreeNode(5);
+//	TreeNode* cur5 = new TreeNode(6);
+//	TreeNode* cur6 = new TreeNode(7);
+//	TreeNode* cur7 = new TreeNode(8);
+//	TreeNode* cur8 = new TreeNode(9);
+//	cur->left = cur1;
+//	cur->right = cur2;
+//
+//	cur1->left = cur3;
+//	cur1->right = cur4;
+//
+//	cur2->left = cur5;
+//	cur2->right = cur6;
+//
+//	cur3->right = cur8;
+//	cur3->left = cur7;
+//	/*TreeNode* tmp;
+//	tmp = Ancestor(cur2,cur3,cur);*/
+//	//vector<int> v1;
+//	//vector<int> v2;//前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}
+//	//v1.push_back(1);
+//	//v1.push_back(2);
+//	//v1.push_back(4);
+//	//v1.push_back(7);
+//	//v1.push_back(3);
+//	//v1.push_back(5);
+//	//v1.push_back(6);
+//	//v1.push_back(8);
+//	//v2.push_back(4);
+//	//v2.push_back(7);
+//	//v2.push_back(2);
+//	//v2.push_back(1);
+//	//v2.push_back(5);
+//	//v2.push_back(3);
+//	//v2.push_back(8);
+//	//v2.push_back(6);
+//	//cur = NULL;
+//	//cur = reConstructBinaryTree(v1, v2);
+//	TreeNode* prev = NULL;
+//	prev=Convert(cur);
+//	cout << endl;
+//	return 0;
+//}
 
 //#include <iostream>
 //#include <vector>
