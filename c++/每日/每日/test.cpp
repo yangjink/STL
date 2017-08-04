@@ -1,230 +1,350 @@
-
-
-
-//Ñ¡ÔñÅÅÐò
 #include <iostream>
 #include <assert.h>
 #include <stack>
 #include <stdlib.h>
 #include <map>
+#include <vector>
 using namespace std;
-void PrintArray(int* a, int n)
-{
-	for (int i = 0; i < n; ++i)
+bool isValid(string s) {//ÅÐ¶ÏÀ¨ºÅÆ¥Åä
+	if (s.length() == 0)
 	{
-		cout << a[i] << " ";
+		return true;
 	}
-	cout << endl;
-}
-//void SelectionSort(int *a,size_t n)
-//{
-//	if (a == NULL)
-//	{
-//		return;
-//	}
-//	int max = 0;
-//	int min = 0;
-//	size_t left = 0;
-//	size_t right = n-1;
-//	int i = 0;
-//	while (left < right)
-//	{
-//		max = right;
-//		min = left;
-//		for (i = left; i <= right; ++i)
-//		{
-//			if (a[i] >= a[max])
-//			{
-//				max = i;
-//			}
-//			if (a[i] <= a[min])
-//			{
-//				min = i;
-//			}
-//		}
-//		swap(a[left], a[min]);
-//		if (max == left)
-//		{
-//			max = min;
-//		}
-//		swap(a[right], a[max]);
-//		++left;
-//		--right;
-//		PrintArray(a, n);
-//	}
-//
-//
-//}
-//void Adjust(int *a,size_t n,size_t root)
-//{
-//	size_t parent = root;
-//	size_t child = parent * 2 + 1;
-//	while (child < n)
-//	{
-//		if (child + 1 < n && a[child + 1] > a[child])
-//		{
-//			++child;
-//		}
-//		if (a[parent] < a[child])
-//		{
-//			swap(a[parent], a[child]);
-//			parent = child;
-//			child = parent * 2 + 1;
-//		}
-//		else
-//		{
-//			break;
-//		}
-//	}
-//}
-//void HeapSort(int *a, size_t n)//¶ÑÅÅÐò
-//{
-//	if (a == NULL)
-//		return;
-//	for (int i = (n >> 1) - 1; i >= 0; --i)
-//	{
-//		Adjust(a,n,i);
-//	}
-//	
-//	for (int i = n - 1; i >= 1; --i)
-//	{
-//		swap(a[0], a[i]);
-//		PrintArray(a, n);
-//		Adjust(a, i, 0);
-//	}
-//
-//}
-//void TestSelectSort()
-//{
-//	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,9,0 };
-//	SelectionSort(a, sizeof(a) / sizeof(a[0]));
-//	PrintArray(a, sizeof(a) / sizeof(a[0]));
-//}
-//void TestHeapSort()
-//{
-//	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,0,9};
-//	HeapSort(a, sizeof(a) / sizeof(a[0]));
-//	PrintArray(a, sizeof(a) / sizeof(a[0]));
-//}
-//¿ìÅÅÍÚ¿Ó·¨
-int Partition(int *a,int left,int right)
-{
-	assert(a);
-	assert(left < right);
-	int index = a[right];
-	while (left < right)
-	{
-		while (left < right && a[left] <= index)
-		{
-			++left;
-		}
-		a[right] = a[left];
-		while (left < right && a[right] >= index)
-		{
-			right--;
-		}
-		a[left] = a[right];
-	}
-	a[left] = index;
-	return left;
-}
 
-void QuickSortR(int *a, int left,int right)//[]
-{
-	if (left >= right)
+	//0() 1{} 2[]
+	int count = 0;
+	int size = s.size();
+	stack<int> stack;
+	while (count < size)
 	{
-		return;
-	}
-	int div = Partition(a,left,right);
-	QuickSortR(a, left, div - 1);
-	QuickSortR(a, div + 1, right);
-}
-void QuickSort(int *a, int n)//[]
-{
-	assert(a);
-	if (n == 1 || n == 0)
-	{
-		return;
-	}
-	stack<int> s;
-	s.push(0);
-	s.push(n - 1);
-	int left = 0;
-	int right = n - 1;
-	while (!s.empty())
-	{
-		right = s.top();
-		s.pop();
-		left = s.top();
-		s.pop();
-		int div = Partition(a,left,right);
-
-		if (div-1 > left)
+		if (s[count] == '(')
 		{
-			s.push(left);
-			s.push(div - 1);
+			stack.push(0);
 		}
-		if (div+1 < right)
+		if (s[count] == ')')
 		{
-			s.push(div+1);
-			s.push(right);
-		}
-	}
-}
-//Ã°ÅÝÅÅÐò
-void BubbleSort(int *a, int n)
-{
-	int i = 0;
-	int j = 0;
-	int tab = 1;
-	for (i = 0; i < n && tab; i++)
-	{
-		tab = 0;
-		for (j = 0; j < n - i-1; j++)
-		{
-			if (a[j] > a[j + 1])
+			if (!stack.empty() && stack.top() == 0)
 			{
-				swap(a[j], a[j + 1]);
-				tab = 1;
+				stack.pop();
+			}
+			else
+			{
+				return false;
 			}
 		}
+		if (s[count] == '{')
+		{
+			stack.push(1);
+		}
+		if (s[count] == '}')
+		{
+			if (!stack.empty() && stack.top() == 1)
+			{
+				stack.pop();
+			}
+			else
+			{
+				return false;
+			}
+		}
+		if (s[count] == '[')
+		{
+			stack.push(2);
+		}
+		if (s[count] == ']')
+		{
+			if ( !stack.empty() && stack.top() == 2)
+			{
+				stack.pop();
+			}
+			else
+			{
+				return false;
+			}
+		}
+		++count;
 	}
+	if (!stack.empty())
+	{
+		return false;
+	}
+	return true;
 }
-void TestBubbleSort()
-{
-	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,0,9};
-	BubbleSort(a, sizeof(a) / sizeof(a[0]));
-	PrintArray(a, sizeof(a) / sizeof(a[0]));
-}
-void TestQuickSort()
-{
-	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2, 0, 9 };
-	QuickSort(a, sizeof(a) / sizeof(a[0])-1);
-	PrintArray(a, sizeof(a) / sizeof(a[0]));
+string longestCommonPrefix(vector<string>& strs) {//×î³¤×Ö·û´®Ç°×º
+	if (strs.empty())
+	{
+		return string();
+	}
+	if (strs[0].empty())
+	{
+		return strs[0];
+	}
+	int i = 1;
+	int size = strs.size();
+	if (size == 1)
+	{
+		return strs[0];
+	}
+	int j = 0;
+	int sizestr = 0;
+	string s(strs[0]);
+	for (; i<size; ++i)
+	{
+		if (strs[i].empty())
+		{
+			return strs[i];
+		}
+		sizestr = strs[i].size();
+		for (j = 0; j <= sizestr; ++j)
+		{
+			if (s[j] != strs[i][j])
+			{
+				s.erase(s.begin() + j, s.end());
+				break;
+			}
+
+		}
+	}
+	return s;
 }
 int main()
 {
-	//TestSelectSort();
-	//TestHeapSort();
-	//TestBubbleSort();
-	//TestQuickSort();2147483648
-	int a = 9646324351;
-	char buff[11];
-	_itoa_s(a,buff,10);
-	printf("%s",buff);
-	map<char, int> m;
-	//¢ñ£¨1£©¡¢X£¨10£©¡¢C£¨100£©¡¢M£¨1000£©¡¢V£¨5£©¡¢L£¨50£©¡¢D£¨500£©
-	m.insert(make_pair('I', 1));
-	m.insert(make_pair('X', 10));
-	m.insert(make_pair('C', 100));
-	m.insert(make_pair('M', 1000));
-	m.insert(make_pair('V', 5));
-	m.insert(make_pair('L', 50));
-	m.insert(make_pair('D', 500));
-	string s("123");
-	
-	int value = m[s[0]];
+	vector<string> v;
+	string s1("aa");
+	string s2("a");
+	string s;
+	v.push_back(s1);
+	v.push_back(s2);
+	s = longestCommonPrefix(v);
+	string s3("]");
+	isValid(s3);
+	return 0;
 }
+
+//Ñ¡ÔñÅÅÐò
+//#include <iostream>
+//#include <assert.h>
+//#include <stack>
+//#include <stdlib.h>
+//#include <map>
+//using namespace std;
+//void PrintArray(int* a, int n)
+//{
+//	for (int i = 0; i < n; ++i)
+//	{
+//		cout << a[i] << " ";
+//	}
+//	cout << endl;
+//}
+////void SelectionSort(int *a,size_t n)
+////{
+////	if (a == NULL)
+////	{
+////		return;
+////	}
+////	int max = 0;
+////	int min = 0;
+////	size_t left = 0;
+////	size_t right = n-1;
+////	int i = 0;
+////	while (left < right)
+////	{
+////		max = right;
+////		min = left;
+////		for (i = left; i <= right; ++i)
+////		{
+////			if (a[i] >= a[max])
+////			{
+////				max = i;
+////			}
+////			if (a[i] <= a[min])
+////			{
+////				min = i;
+////			}
+////		}
+////		swap(a[left], a[min]);
+////		if (max == left)
+////		{
+////			max = min;
+////		}
+////		swap(a[right], a[max]);
+////		++left;
+////		--right;
+////		PrintArray(a, n);
+////	}
+////
+////
+////}
+////void Adjust(int *a,size_t n,size_t root)
+////{
+////	size_t parent = root;
+////	size_t child = parent * 2 + 1;
+////	while (child < n)
+////	{
+////		if (child + 1 < n && a[child + 1] > a[child])
+////		{
+////			++child;
+////		}
+////		if (a[parent] < a[child])
+////		{
+////			swap(a[parent], a[child]);
+////			parent = child;
+////			child = parent * 2 + 1;
+////		}
+////		else
+////		{
+////			break;
+////		}
+////	}
+////}
+////void HeapSort(int *a, size_t n)//¶ÑÅÅÐò
+////{
+////	if (a == NULL)
+////		return;
+////	for (int i = (n >> 1) - 1; i >= 0; --i)
+////	{
+////		Adjust(a,n,i);
+////	}
+////	
+////	for (int i = n - 1; i >= 1; --i)
+////	{
+////		swap(a[0], a[i]);
+////		PrintArray(a, n);
+////		Adjust(a, i, 0);
+////	}
+////
+////}
+////void TestSelectSort()
+////{
+////	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,9,0 };
+////	SelectionSort(a, sizeof(a) / sizeof(a[0]));
+////	PrintArray(a, sizeof(a) / sizeof(a[0]));
+////}
+////void TestHeapSort()
+////{
+////	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,0,9};
+////	HeapSort(a, sizeof(a) / sizeof(a[0]));
+////	PrintArray(a, sizeof(a) / sizeof(a[0]));
+////}
+////¿ìÅÅÍÚ¿Ó·¨
+//int Partition(int *a,int left,int right)
+//{
+//	assert(a);
+//	assert(left < right);
+//	int index = a[right];
+//	while (left < right)
+//	{
+//		while (left < right && a[left] <= index)
+//		{
+//			++left;
+//		}
+//		a[right] = a[left];
+//		while (left < right && a[right] >= index)
+//		{
+//			right--;
+//		}
+//		a[left] = a[right];
+//	}
+//	a[left] = index;
+//	return left;
+//}
+//
+//void QuickSortR(int *a, int left,int right)//[]
+//{
+//	if (left >= right)
+//	{
+//		return;
+//	}
+//	int div = Partition(a,left,right);
+//	QuickSortR(a, left, div - 1);
+//	QuickSortR(a, div + 1, right);
+//}
+//void QuickSort(int *a, int n)//[]
+//{
+//	assert(a);
+//	if (n == 1 || n == 0)
+//	{
+//		return;
+//	}
+//	stack<int> s;
+//	s.push(0);
+//	s.push(n - 1);
+//	int left = 0;
+//	int right = n - 1;
+//	while (!s.empty())
+//	{
+//		right = s.top();
+//		s.pop();
+//		left = s.top();
+//		s.pop();
+//		int div = Partition(a,left,right);
+//
+//		if (div-1 > left)
+//		{
+//			s.push(left);
+//			s.push(div - 1);
+//		}
+//		if (div+1 < right)
+//		{
+//			s.push(div+1);
+//			s.push(right);
+//		}
+//	}
+//}
+////Ã°ÅÝÅÅÐò
+//void BubbleSort(int *a, int n)
+//{
+//	int i = 0;
+//	int j = 0;
+//	int tab = 1;
+//	for (i = 0; i < n && tab; i++)
+//	{
+//		tab = 0;
+//		for (j = 0; j < n - i-1; j++)
+//		{
+//			if (a[j] > a[j + 1])
+//			{
+//				swap(a[j], a[j + 1]);
+//				tab = 1;
+//			}
+//		}
+//	}
+//}
+//void TestBubbleSort()
+//{
+//	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2,0,9};
+//	BubbleSort(a, sizeof(a) / sizeof(a[0]));
+//	PrintArray(a, sizeof(a) / sizeof(a[0]));
+//}
+//void TestQuickSort()
+//{
+//	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2, 0, 9 };
+//	QuickSort(a, sizeof(a) / sizeof(a[0])-1);
+//	PrintArray(a, sizeof(a) / sizeof(a[0]));
+//}
+//int main()
+//{
+//	//TestSelectSort();
+//	//TestHeapSort();
+//	//TestBubbleSort();
+//	//TestQuickSort();2147483648
+//	int a = 9646324351;
+//	char buff[11];
+//	_itoa_s(a,buff,10);
+//	printf("%s",buff);
+//	map<char, int> m;
+//	//¢ñ£¨1£©¡¢X£¨10£©¡¢C£¨100£©¡¢M£¨1000£©¡¢V£¨5£©¡¢L£¨50£©¡¢D£¨500£©
+//	m.insert(make_pair('I', 1));
+//	m.insert(make_pair('X', 10));
+//	m.insert(make_pair('C', 100));
+//	m.insert(make_pair('M', 1000));
+//	m.insert(make_pair('V', 5));
+//	m.insert(make_pair('L', 50));
+//	m.insert(make_pair('D', 500));
+//	string s("123");
+//	
+//	int value = m[s[0]];
+//}
 
 
 //Ç°ÐòºÍÖÐÐòÈ·Á¢¶þ²æÊ÷
