@@ -1,141 +1,141 @@
-#include <iostream>
-#include <assert.h>
-#include <stack>
-#include <stdlib.h>
-#include <map>
-#include <vector>
-using namespace std;
-bool isValid(string s) {//ÅÐ¶ÏÀ¨ºÅÆ¥Åä
-	if (s.length() == 0)
-	{
-		return true;
-	}
-
-	//0() 1{} 2[]
-	int count = 0;
-	int size = s.size();
-	stack<int> stack;
-	while (count < size)
-	{
-		if (s[count] == '(')
-		{
-			stack.push(0);
-		}
-		if (s[count] == ')')
-		{
-			if (!stack.empty() && stack.top() == 0)
-			{
-				stack.pop();
-			}
-			else
-			{
-				return false;
-			}
-		}
-		if (s[count] == '{')
-		{
-			stack.push(1);
-		}
-		if (s[count] == '}')
-		{
-			if (!stack.empty() && stack.top() == 1)
-			{
-				stack.pop();
-			}
-			else
-			{
-				return false;
-			}
-		}
-		if (s[count] == '[')
-		{
-			stack.push(2);
-		}
-		if (s[count] == ']')
-		{
-			if ( !stack.empty() && stack.top() == 2)
-			{
-				stack.pop();
-			}
-			else
-			{
-				return false;
-			}
-		}
-		++count;
-	}
-	if (!stack.empty())
-	{
-		return false;
-	}
-	return true;
-}
-string longestCommonPrefix(vector<string>& strs) {//×î³¤×Ö·û´®Ç°×º
-	if (strs.empty())
-	{
-		return string();
-	}
-	if (strs[0].empty())
-	{
-		return strs[0];
-	}
-	int i = 1;
-	int size = strs.size();
-	if (size == 1)
-	{
-		return strs[0];
-	}
-	int j = 0;
-	int sizestr = 0;
-	string s(strs[0]);
-	for (; i<size; ++i)
-	{
-		if (strs[i].empty())
-		{
-			return strs[i];
-		}
-		sizestr = strs[i].size();
-		for (j = 0; j <= sizestr; ++j)
-		{
-			if (s[j] != strs[i][j])
-			{
-				s.erase(s.begin() + j, s.end());
-				break;
-			}
-
-		}
-	}
-	return s;
-}
-int main()
-{
-	vector<string> v;
-	string s1("aa");
-	string s2("a");
-	string s;
-	v.push_back(s1);
-	v.push_back(s2);
-	s = longestCommonPrefix(v);
-	string s3("]");
-	isValid(s3);
-	return 0;
-}
-
-//Ñ¡ÔñÅÅÐò
 //#include <iostream>
 //#include <assert.h>
 //#include <stack>
 //#include <stdlib.h>
 //#include <map>
+//#include <vector>
 //using namespace std;
-//void PrintArray(int* a, int n)
-//{
-//	for (int i = 0; i < n; ++i)
+//bool isValid(string s) {//ÅÐ¶ÏÀ¨ºÅÆ¥Åä
+//	if (s.length() == 0)
 //	{
-//		cout << a[i] << " ";
+//		return true;
 //	}
-//	cout << endl;
+//
+//	//0() 1{} 2[]
+//	int count = 0;
+//	int size = s.size();
+//	stack<int> stack;
+//	while (count < size)
+//	{
+//		if (s[count] == '(')
+//		{
+//			stack.push(0);
+//		}
+//		if (s[count] == ')')
+//		{
+//			if (!stack.empty() && stack.top() == 0)
+//			{
+//				stack.pop();
+//			}
+//			else
+//			{
+//				return false;
+//			}
+//		}
+//		if (s[count] == '{')
+//		{
+//			stack.push(1);
+//		}
+//		if (s[count] == '}')
+//		{
+//			if (!stack.empty() && stack.top() == 1)
+//			{
+//				stack.pop();
+//			}
+//			else
+//			{
+//				return false;
+//			}
+//		}
+//		if (s[count] == '[')
+//		{
+//			stack.push(2);
+//		}
+//		if (s[count] == ']')
+//		{
+//			if ( !stack.empty() && stack.top() == 2)
+//			{
+//				stack.pop();
+//			}
+//			else
+//			{
+//				return false;
+//			}
+//		}
+//		++count;
+//	}
+//	if (!stack.empty())
+//	{
+//		return false;
+//	}
+//	return true;
 //}
+//string longestCommonPrefix(vector<string>& strs) {//×î³¤×Ö·û´®Ç°×º
+//	if (strs.empty())
+//	{
+//		return string();
+//	}
+//	if (strs[0].empty())
+//	{
+//		return strs[0];
+//	}
+//	int i = 1;
+//	int size = strs.size();
+//	if (size == 1)
+//	{
+//		return strs[0];
+//	}
+//	int j = 0;
+//	int sizestr = 0;
+//	string s(strs[0]);
+//	for (; i<size; ++i)
+//	{
+//		if (strs[i].empty())
+//		{
+//			return strs[i];
+//		}
+//		sizestr = strs[i].size();
+//		for (j = 0; j <= sizestr; ++j)
+//		{
+//			if (s[j] != strs[i][j])
+//			{
+//				s.erase(s.begin() + j, s.end());
+//				break;
+//			}
+//
+//		}
+//	}
+//	return s;
+//}
+//int main()
+//{
+//	vector<string> v;
+//	string s1("aa");
+//	string s2("a");
+//	string s;
+//	v.push_back(s1);
+//	v.push_back(s2);
+//	s = longestCommonPrefix(v);
+//	string s3("]");
+//	isValid(s3);
+//	return 0;
+//}
+
+//Ñ¡ÔñÅÅÐò
+#include <iostream>
+#include <assert.h>
+#include <stack>
+#include <stdlib.h>
+#include <map>
+using namespace std;
+void PrintArray(int* a, int n)
+{
+	for (int i = 0; i < n; ++i)
+	{
+		cout << a[i] << " ";
+	}
+	cout << endl;
+}
 ////void SelectionSort(int *a,size_t n)
 ////{
 ////	if (a == NULL)
@@ -322,29 +322,85 @@ int main()
 //	QuickSort(a, sizeof(a) / sizeof(a[0])-1);
 //	PrintArray(a, sizeof(a) / sizeof(a[0]));
 //}
-//int main()
-//{
-//	//TestSelectSort();
-//	//TestHeapSort();
-//	//TestBubbleSort();
-//	//TestQuickSort();2147483648
-//	int a = 9646324351;
-//	char buff[11];
-//	_itoa_s(a,buff,10);
-//	printf("%s",buff);
-//	map<char, int> m;
-//	//¢ñ£¨1£©¡¢X£¨10£©¡¢C£¨100£©¡¢M£¨1000£©¡¢V£¨5£©¡¢L£¨50£©¡¢D£¨500£©
-//	m.insert(make_pair('I', 1));
-//	m.insert(make_pair('X', 10));
-//	m.insert(make_pair('C', 100));
-//	m.insert(make_pair('M', 1000));
-//	m.insert(make_pair('V', 5));
-//	m.insert(make_pair('L', 50));
-//	m.insert(make_pair('D', 500));
-//	string s("123");
-//	
-//	int value = m[s[0]];
-//}
+void _MergeSort(int *a, int* tmp,int left,int right)
+{
+	if (left >= right || (right-left) == 1)
+	{
+		return;
+	}
+
+	int mid = right - ((right - left) >> 1);
+
+	_MergeSort(a,tmp,left,mid);
+	_MergeSort(a,tmp,mid+1,right);
+
+	int begin1 = left;
+	int begin2 = mid + 1;
+	int index = left;
+	while (begin1 <= mid && begin2 <= right)
+	{
+		if (a[begin1] < a[begin2])
+		{
+			tmp[index++] = a[begin1++];
+		}
+		else
+		{
+			tmp[index++] = a[begin2++];
+		}
+	}
+	while (begin1 <= mid)
+	{
+		tmp[index++] = a[begin1++];
+	}
+	while (begin2 <= right)
+	{
+		tmp[index++] = a[begin2++];
+	}
+	int i = left;
+	while (i <= right)
+	{
+		a[i] = tmp[i];
+		++i;
+	}
+}
+void MergeSort(int *a,int n)
+{
+	assert(a);
+	int *tmp = new int[n];
+	_MergeSort(a,tmp,0,n-1);
+	delete[] tmp;
+
+}
+void TestMergeSort()
+{
+	int a[] = { 9, 5, 4, 0, 3, 6, 8, 7, 1, 2};
+	MergeSort(a, sizeof(a) / sizeof(a[0]));
+	PrintArray(a, sizeof(a) / sizeof(a[0]));
+}
+int main()
+{
+	TestMergeSort();
+	//TestSelectSort();
+	//TestHeapSort();
+	//TestBubbleSort();
+	//TestQuickSort();2147483648
+	//int a = 9646324351;
+	//char buff[11];
+	//_itoa_s(a,buff,10);
+	//printf("%s",buff);
+	//map<char, int> m;
+	////¢ñ£¨1£©¡¢X£¨10£©¡¢C£¨100£©¡¢M£¨1000£©¡¢V£¨5£©¡¢L£¨50£©¡¢D£¨500£©
+	//m.insert(make_pair('I', 1));
+	//m.insert(make_pair('X', 10));
+	//m.insert(make_pair('C', 100));
+	//m.insert(make_pair('M', 1000));
+	//m.insert(make_pair('V', 5));
+	//m.insert(make_pair('L', 50));
+	//m.insert(make_pair('D', 500));
+	//string s("123");
+	//
+	//int value = m[s[0]];
+}
 
 
 //Ç°ÐòºÍÖÐÐòÈ·Á¢¶þ²æÊ÷
