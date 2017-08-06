@@ -126,6 +126,7 @@
 #include <assert.h>
 #include <stack>
 #include <stdlib.h>
+#include <vector>
 #include <map>
 using namespace std;
 void PrintArray(int* a, int n)
@@ -324,20 +325,20 @@ void PrintArray(int* a, int n)
 //}
 void _MergeSort(int *a, int* tmp,int left,int right)
 {
-	if (left >= right || (right-left) == 1)
+	if (left >= right )
 	{
 		return;
 	}
 
 	int mid = right - ((right - left) >> 1);
 
-	_MergeSort(a,tmp,left,mid);
-	_MergeSort(a,tmp,mid+1,right);
+	_MergeSort(a,tmp,left,mid-1);
+	_MergeSort(a,tmp,mid,right);
 
 	int begin1 = left;
-	int begin2 = mid + 1;
+	int begin2 = mid;
 	int index = left;
-	while (begin1 <= mid && begin2 <= right)
+	while (begin1 <= mid-1 && begin2 <= right)
 	{
 		if (a[begin1] < a[begin2])
 		{
@@ -348,7 +349,7 @@ void _MergeSort(int *a, int* tmp,int left,int right)
 			tmp[index++] = a[begin2++];
 		}
 	}
-	while (begin1 <= mid)
+	while (begin1 <= mid-1)
 	{
 		tmp[index++] = a[begin1++];
 	}
@@ -357,7 +358,7 @@ void _MergeSort(int *a, int* tmp,int left,int right)
 		tmp[index++] = a[begin2++];
 	}
 	int i = left;
-	while (i <= right)
+	while (i < index)
 	{
 		a[i] = tmp[i];
 		++i;
@@ -377,9 +378,50 @@ void TestMergeSort()
 	MergeSort(a, sizeof(a) / sizeof(a[0]));
 	PrintArray(a, sizeof(a) / sizeof(a[0]));
 }
+void BucketSort(int *a, int n)
+{
+	if (a == NULL)
+		return;
+	int max = a[0];
+	int min = a[0];
+	vector<int> v;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+		}
+		if (a[i] < min)
+		{
+			min = a[i];
+		}
+	}
+	v.resize(max - min+1);
+
+	for (int i = 0; i < n; i++)
+	{
+		v[a[i] - min]++;
+	}
+	int j = 0;
+	for (size_t i = 0; i < v.size(); i++)
+	{
+		
+		while (v[i]--)
+		{
+			a[j++] = i + min;
+		}
+	}
+}
+void TestBucketSort()
+{
+	int a[] = { 12, 13, 12, 13, 19, 18, 15, 12, 15, 16, 17 };
+	BucketSort(a, sizeof(a) / sizeof(a[0]));
+	PrintArray(a, sizeof(a) / sizeof(a[0]));
+}
 int main()
 {
-	TestMergeSort();
+	TestBucketSort();
+	//TestMergeSort(); 
 	//TestSelectSort();
 	//TestHeapSort();
 	//TestBubbleSort();
